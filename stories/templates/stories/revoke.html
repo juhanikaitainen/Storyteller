@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Revoke Stories{% endblock %}
+{% block content %}
+<h3>Revoke Approved Stories</h3>
+<ul>
+    {% for story in stories %}
+    <li>{{ story.title }} | <a href="{% url 'stories:revoke-id' id=story.id %}">Revoke</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

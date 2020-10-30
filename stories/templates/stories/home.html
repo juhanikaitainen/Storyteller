@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Stories Home{% endblock %}
+
+{% block content %}
+<ul>
+    <li><a href="{% url 'stories:list' %}">Browse Catalog</a></li>
+    <li><a href="{% url 'stories:my' %}">Continue Reading</a></li>
+    {% if userinfo.usertype >= 1 %}
+    <li><a href="{% url 'stories:new' %}">New Story</a></li>
+    {% endif %}
+    {% if userinfo.usertype >= 2 %}
+    <li><a href="{% url 'stories:approve' %}">Approve, Revoke and Rate Stories</a></li>
+    {% endif %}
+</ul>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Freeze Users | Settings{% endblock %}
+{% block content %}
+<h2>Freeze Users</h2>
+<p>Actions have consequences</p>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Ban Hammer</th>
+    </tr>
+    {% for user in available_users %}
+    <tr>
+        <td>{{ user.name }}</td>
+        <td>{{ user.djangouser.username }}</td>
+        <td><a href="{% url 'users:freeze-id' id=user.id %}">BAN</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

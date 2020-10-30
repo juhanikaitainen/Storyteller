@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Continue Reading{% endblock %}
+{% block content %}
+<ul>
+    {% for point in mystories %}
+    <li>{{ point.story.title }} | {{ point.section.id }} | <a href="{% url 'stories:read' storyid=point.story.id sectionid=point.section.id %}">Continue</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

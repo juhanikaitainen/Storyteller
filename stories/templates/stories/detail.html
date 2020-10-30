@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Story Details{% endblock %}
+
+{% block content %}
+<h3>{{ story.title }}</h3>
+<p>{{ story.summary }}</p>
+<p>Author: <strong>{{ story.author.username }}</strong></p>
+<p>Price: <strong>{{ story.price }}</strong> coins</p>
+{% if resumePos is not None %}
+<a href="{% url 'stories:read' storyid=story.id sectionid=resumePos.id %}">Continue Reading</a> <br>
+<small>You already own this story</small>
+{% elif canbuy %}
+<a href="{% url 'stories:buy' id=story.id %}">Buy Now</a>
+{% else %}
+<red>Not enough coins in your wallet to buy this story</red><br>
+<small><a href="{% url 'accounts:add' %}">Add coins to your wallet</a></small>
+{% endif %}
+{% endblock %}

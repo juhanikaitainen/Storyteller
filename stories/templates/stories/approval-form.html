@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Approve Story Number {{ story.id }}{% endblock %}
+
+{% block content %}
+<h3>Approve a story</h3>
+<p>Actions have consequences</p>
+<form action="{% url 'stories:approve-id' id=story.id %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Approve">
+</form>
+{% endblock %}

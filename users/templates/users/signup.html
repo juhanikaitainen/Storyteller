@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+    <h2>User Signup</h2>
+    <form action="{% url 'users:signup-view' %}" method="post">
+        {% csrf_token %}
+        {{ djangoform }}
+        {{ customform }}
+        <input type="submit" value="Signup">
+    </form>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ name }} | Storyteller{% endblock %}
+{% block content %}
+<h3>{{ name }}</h3>
+<p>{{ section.text }}</p>
+{% if links is not None %}
+<ul>
+    {% for link in links %}
+    <li><a href="{% url 'stories:read' storyid=sid sectionid=link.tosection.id %}">{{ link.button }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+<p><a href="{% url 'stories:read' storyid=sid sectionid=fsid.id %}">Go back to beginning</a></p>
+{% endblock %}

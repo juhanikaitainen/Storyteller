@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Transaction History{% endblock %}
+
+{% block content %}
+<table>
+    <tr>
+        <th>Date &amp; Time</th>
+        <th>Amount</th>
+        <th>Added or Withdrawn</th>
+    </tr>
+    {% for item in history %}
+    <tr>
+        <td>{{ item.timestamp }}</td>
+        <td>{{ item.amount }}</td>
+        <td>
+            {% if item.withdrawn %}
+            WITHDRAWN
+            {% else %}
+            ADDED
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
