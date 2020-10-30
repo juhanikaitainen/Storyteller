@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Approve and Rate Stories{% endblock %}
+{% block content %}
+<h3>Approve and Rate Stories</h3>
+<ul>
+    {% for story in stories %}
+    <li>{{ story.title }} | <a href="{% url 'stories:approve-id' id=story.id %}">Save</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

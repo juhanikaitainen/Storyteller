@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}New Story{% endblock %}
+
+{% block content %}
+{% if err is not None %}
+<p>{{ err }}</p>
+{% endif %}
+
+<form action="{% url 'stories:new' %}" method="post">
+    {% csrf_token %}
+    <textarea name="jsonfile" id="YES" cols="50" rows="30"></textarea>
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

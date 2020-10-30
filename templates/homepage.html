@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Storyteller Home{% endblock %}
+
+{% block content %}
+<h2>This is home page</h2>
+{% if name is not None %}
+<p>Welcome back {{ name }}!</p>
+{% endif %}
+{% endblock %}

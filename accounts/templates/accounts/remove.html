@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Withdraw Coins{% endblock %}
+
+{% block content %}
+<h3>Withdraw Coins</h3>
+<form action="{% url 'accounts:withdraw' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Add">
+</form>
+{% endblock %}

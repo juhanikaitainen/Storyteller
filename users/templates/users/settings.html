@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}User Settings{% endblock %}
+{% block content %}
+<ul>
+    {% if is_mod %}
+        <li><a href="{% url 'users:freeze-view' %}">Freeze Users</a></li>
+        <li><a href="{% url 'users:unfreeze-view' %}">Unfreeze Users</a></li>
+        <li><a href="{% url 'users:grant-privilege' %}">Grant Privileges</a></li>
+    {% else %}
+        <li><a href="{% url 'users:privilege-application' %}">Apply for higher privileges</a></li>
+    {% endif %}
+</ul>
+{% endblock %}

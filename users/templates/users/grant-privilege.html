@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Grant Privileges{% endblock %}
+
+{% block content %}
+<p>Actions have consequences</p>
+<h3>Grant Privileges</h3>
+{% for app in applications %}
+<div>
+    <p>Applied by: <strong> {{ app.djangouser.username }} </strong></p>
+    <p>Privilege Level: <strong>{{ app.totype }}</strong></p>
+    <p>Comments: {{ app.req }}</p>
+    <p><a href="{% url 'users:grant-id' id=app.id %}">Grant</a></p>
+    <p><a href="{% url 'users:reject-id' id=app.id %}">Reject</a></p>
+</div>
+{% endfor %}
+{% endblock %}

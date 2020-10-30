@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Application Success{% endblock %}
+
+{% block content %}
+<a href="{% url 'home-view' %}">Back to Home</a>
+<h3>Application Acknowledgement</h3>
+<p>Applied on: {{ application.timestamp }}</p>
+<p>Applicant Username: {{ application.djangouser.username }}</p>
+<p>Applied for privilege: 
+    {% if application.totype == 2 %}
+        Writer
+    {% else %}
+        Moderator
+    {% endif %}
+</p>
+<p>Acknowledged by Storyteller Admin</p>
+{% endblock %}

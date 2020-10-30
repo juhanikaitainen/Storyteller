@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Catalog{% endblock %}
+
+{% block content %}
+<h3>Browse Catalog</h3>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Rating</th>
+        <th>Price</th>
+        <th>Details</th>
+    </tr>
+    {% for story in catalog %}
+    <tr>
+        <td>{{ story.title }}</td>
+        <td>{{ story.rating }}</td>
+        <td>{{ story.price }}</td>
+        <td><a href="{% url 'stories:detail' id=story.id %}">Details</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

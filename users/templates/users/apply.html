@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Apply for Privileges{% endblock %}
+
+{% block content %}
+{% if cust_err is not None %}
+    <p>{{cust_err}}</p>
+{% endif %}
+
+<h3>Apply for privileges</h3>
+<form action="{% url 'users:privilege-application' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Apply">
+</form>
+{% endblock %}

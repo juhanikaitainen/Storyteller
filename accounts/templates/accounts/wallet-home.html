@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Wallet{% endblock %}
+
+{% block content %}
+<h2>You have {{ wallet.balance }} coins in your wallet</h2>
+<ul>
+    <li><a href="{% url 'accounts:add' %}">Add Coins</a></li>
+    <li><a href="{% url 'accounts:withdraw' %}">Withdraw Coins</a></li>
+    <li><a href="{% url 'accounts:history' %}">Transaction History</a></li>
+</ul>
+{% endblock %}
