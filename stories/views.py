@@ -180,7 +180,7 @@ def story_read(request, storyid, sectionid):
 @writer_required
 def story_new(request):
     def renderError(err):
-        return render(request, 'stories/new.html', {'err': err})
+        return render(request, 'stories/new.html', {'err': err, 'fileinfo': request.POST['jsonfile'].strip()})
 
     if request.method == 'POST':
         jsonstory = request.POST['jsonfile']
@@ -236,7 +236,7 @@ def story_new(request):
             return redirect('stories:valid')
         else:
             return renderError("INVALID format. Please check the documentation for the correct format!")
-    return render(request, 'stories/new.html', {'err': None})
+    return render(request, 'stories/new.html', {'err': None, 'fileinfo': None})
 
 
 @login_required
