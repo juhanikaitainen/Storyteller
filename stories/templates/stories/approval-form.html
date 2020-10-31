@@ -5,6 +5,7 @@
 {% block content %}
 <h3>Approve a story</h3>
 <p>Actions have consequences</p>
+<a href="{% url 'stories:read' storyid=story.id sectionid=firstsection.id %}" target="_blank">Read this story</a>
 <form action="{% url 'stories:approve-id' id=story.id %}" method="post">
     {% csrf_token %}
     {{ form }}
