@@ -27,7 +27,25 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG") == "1"
 
-ALLOWED_HOSTS = ['story.pythonanywhere.com', '127.0.0.1']
+if not DEBUG:
+    global SECURE_HSTS_SECONDS
+    global SECURE_HSTS_SECONDS
+    global SESSION_COOKIE_SECURE
+    global CSRF_COOKIE_SECURE
+    global SECURE_HSTS_INCLUDE_SUBDOMAINS
+    SECURE_HSTS_INCLUDE_SUBDOMAINS=True
+    SECURE_HSTS_PRELOAD=True
+    SECURE_HSTS_SECONDS=31536000
+    SECURE_SSL_REDIRECT=True
+    SESSION_COOKIE_SECURE=True
+    CSRF_COOKIE_SECURE=True
+
+ALLOWED_HOSTS = []
+
+if DEBUG:
+    ALLOWED_HOSTS.append('127.0.0.1')
+else:
+    ALLOWED_HOSTS.append('story.pythonanywhere.com')
 
 
 # Application definition
