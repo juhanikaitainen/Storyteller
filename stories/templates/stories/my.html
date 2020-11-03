@@ -2,9 +2,22 @@
 
 {% block title %}Continue Reading{% endblock %}
 {% block content %}
-<ul>
-    {% for point in mystories %}
-    <li>{{ point.story.title }} | {{ point.section.id }} | <a href="{% url 'stories:read' storyid=point.story.id sectionid=point.section.id %}">Continue</a></li>
-    {% endfor %}
-</ul>
+<div class="container" style="min-height: 80vh;">
+    <h1>Continue Reading</h1>
+    <table class="table mt-5">
+        <tr>
+            <th>Title</th>
+            <th>Section</th>
+            <th></th>
+        </tr>
+        {% for point in mystories %}
+        <tr>
+            <td>{{ point.story.title }}</td>
+            <td>{{ point.section.id }}</td>
+            <td><a class="btn btn-primary py-0"
+                    href="{% url 'stories:read' storyid=point.story.id sectionid=point.section.id %}">Continue</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}

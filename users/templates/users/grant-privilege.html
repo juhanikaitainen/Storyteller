@@ -2,15 +2,28 @@
 {% block title %}Grant Privileges{% endblock %}
 
 {% block content %}
-<p>Actions have consequences</p>
-<h3>Grant Privileges</h3>
-{% for app in applications %}
-<div>
-    <p>Applied by: <strong> {{ app.djangouser.username }} </strong></p>
-    <p>Privilege Level: <strong>{{ app.totype }}</strong></p>
-    <p>Comments: {{ app.req }}</p>
-    <p><a href="{% url 'users:grant-id' id=app.id %}">Grant</a></p>
-    <p><a href="{% url 'users:reject-id' id=app.id %}">Reject</a></p>
+<div class="container" style="min-height: 80vh;">
+    <p><a class="btn btn-custom" href="{% url 'users:settings-view' %}">Back to Settings</a></p>
+    <h1 class="text-warning my-4">Grant Privileges</h1>
+    <p class="lead"><a href="{% url 'helpp:home' %}#moderation">Guidelines for Moderation</a></p>
+    <div class="row">
+        {% for app in applications %}
+        <div class="card col-12 col-md-6 col-lg-4" style="border: 2px solid #ffc107; border-radius: 0; background-color: transparent;">
+            <div class="card-body my-4">
+                <h5 class="card-title">&commat;{{ app.djangouser.username }}</h5>
+                <h6 class="card-subtitle mb-2 text-info">For {% if app.totype == 1 %}
+                Writer
+                {% elif app.totype == 2 %}
+                Moderator
+                {% else %}
+                INVALID
+                {% endif %}</h6>
+                <p class="card-text">Comments: {{ app.req }}</p>
+                <a class="card-link btn btn-outline-warning" href="{% url 'users:grant-id' id=app.id %}">Grant</a>
+                <a class="card-link btn btn-outline-primary" href="{% url 'users:reject-id' id=app.id %}">Reject</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
-{% endfor %}
 {% endblock %}

@@ -3,32 +3,42 @@
 {% block title %}New Story{% endblock %}
 
 {% block content %}
-{% if err is not None %}
-<p>{{ err }}</p>
-{% endif %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.css" />
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/javascript/javascript.min.js"></script>
-
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/codemirror.min.js"></script>
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/mode/javascript/javascript.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/material-ocean.min.css">
-
 <script src="https://codemirror.net/addon/edit/closebrackets.js"></script>
-<h2>New Story</h2>
 <style>
     .CodeMirror {
         font-size: 1.2em;
+        height: 500px;
     }
 </style>
-<form action="{% url 'stories:new' %}" method="post">
-    {% csrf_token %}
-    <textarea name="jsonfile" id="biggie" cols="50"
-        rows="30">{% if fileinfo is not None %}{{fileinfo}}{% endif %}</textarea>
-    <input type="submit" value="Submit">
-</form>
+<div class="container">
+    <h1 class="text-center my-2 pb-2">New Story</h1>
+    <p class="text-center"><a href="{% url 'helpp:home' %}#info-authors">Learn how to write interactive stories</a></p>
+    {% if err is not None %}
+    <div class="alert alert-danger alert-dismissible fade show" style="border-radius: 0;" role="alert">
+        {{ err }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+    <form action="{% url 'stories:new' %}" method="post">
+        {% csrf_token %}
+        <textarea name="jsonfile" id="biggie" cols="50"
+            rows="50">{% if fileinfo is not None %}{{fileinfo}}{% endif %}</textarea>
+        <input class="btn btn-outline-success mt-4" type="submit" value="Submit">
+    </form>
+</div>
+
+
 <script>
     CodeMirror.fromTextArea(document.querySelector('#biggie'), {
+        lineWrapping: true,
         lineNumbers: true,
         indentUnit: 4,
         mode: { name: "javascript", json: true },

@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Desk</title>
+    <link rel="stylesheet" href="https://utkarsh-gupta.codes/feather/feather.css">
+</head>
+
+<body>
+    <header>
+        <h1>Storyteller Helpdesk</h1>
+        <img src="{% static 'images/icon.svg' %}" alt="Storyteller Logo" height="50" width="50"
+            style="background-color: #ff3f81; padding: 6px;">
+        <p><a href="{% url 'home-view' %}">Back to Home</a></p>
+        <nav>
+            <h2>Table of Contents</h2>
+            <ol>
+                <li><a href="#about-website">What is this website about?</a></li>
+                <li><a href="#info-authors">Information for Authors</a></li>
+                <li><a href="info-devs">Information for Developers</a></li>
+                <li><a href="#moderation">Guidelines for Moderation</a></li>
+                <li><a href="#about-creator">About the Creator</a></li>
+                <li><a href="#credits">Credits</a></li>
+            </ol>
+        </nav>
+    </header>
+    <hr>
+    <main>
+        <section>
+            <h2 id="about-website">1. What is this website about?</h2>
+            <article>
+                <h3>1.1 Overview</h3>
+                <p>This is a website for selling, buying and reading interactive stories. Storyteller is a project made
+                    by a college student for evaluation purposes (i.e. there is no real money involved in buying/selling
+                    the stories). However the stories shared on this plaform are real and everyone is free to sign up
+                    and read/write stories.</p>
+            </article>
+            <article>
+                <h3>1.2 <em>Interactive</em> Stories</h3>
+                <p>An interactive story is a story in which the reader can make choices about what happens next while
+                    reading the story, which not only makes it more immersive than a regular story, but also decides how
+                    the story progresses. This adds a whole new dimension to story-reading as different people arrive at
+                    different endings which makes up for an interesting discussion about how people make decisions in
+                    certain scenarios.</p>
+                <p>While there is certainly an opportunity for psychological study here, I (the Creator) have not
+                    explored it. This project is about the technical aspect of writing such stories and implementing the
+                    interactivity.</p>
+            </article>
+            <article>
+                <h3>1.3 Usage Guide</h3>
+                <p>You need to Sign Up for an account <a href="{% url 'users:signup-view' %}">here</a> to see any
+                    content whatsoever. A wallet is automatically created for you upon signing up which you can always
+                    access from the navigation bar on the top. It is good to add some money to your wallet before you do
+                    anything else. You can also see your transaction history from the same section.</p>
+                <p>Clicking on 'Stories' in the navigation bar takes you to the Story Home Page where you can explore
+                    and buy new stories or continue reading your old stories. <green>Your reading positions are always
+                        saved</green>.</p>
+                <h3>1.4 Making Choices</h3>
+            </article>
+            <article>
+                <p>When you 'read' a story, you are usually given a small paragraph (part of the story) along with one
+                    or more buttons. Clicking on one of these buttons decides how the story will move forward. If you
+                    have any issues or wish to provide feedback regarding this experience you are always welcome to mail
+                    me at <a href="mailto:utk1234@outlook.com">utk1234@outlook.com</a>.</p>
+            </article>
+            <article>
+                <h3>1.5 Banned Users</h3>
+                <p>You can get banned from the platform if you are found exploiting or misusing any functionality of
+                    this website. The "BAN" freezes your account so that you cannot access your wallet or stories. In
+                    case you think that you have been banned without a reason mail me at <a
+                        href="mailto:utk1234@outlook.com">utk1234@outlook.com</a>. There are multiple moderators on this
+                    platform and each one of them have the power to ban and un-ban users.</p>
+            </article>
+
+        </section>
+        <section>
+            <h2 id="info-authors">2. Information for Authors</h2>
+            <article>
+                <h3>2.1 The Art of Writing Interactive Stories</h3>
+                <p>First of all you need a good story that has considerable number of choices. Here is an excerpt from
+                    the experience of one of our authors:</p>
+                <blockquote cite="http://utkarsh-gupta.codes/blog/2020/08/Take-me-home-bts.html">
+                    <blue style="font-family: 'Times New Roman', Times, serif;">
+                        <p> I sat down just after breakfast and wrote one story in broken sentences (the one which has a
+                            happy ending) and looked for places where I could branch out and create alternate
+                            narratives. Coming up with alternates is hard! With a bit of error and trial I figured that
+                            there needs to be a minimum of 5 choices along every possible path to make the story feel
+                            like an actual story. I also figured out that writing 2<sup>5</sup>-1 = 31 different endings was
+                            impossible in 2 days. So I decided that some paths will have to merge.</p>
+                        <p>I spent rest of the day coming up with 6-7 endings. This was the most entertaining task – It
+                            was a question of much did I want to get the protagonist beat up! Next morning I woke up early with
+                            a fresh mind and worked towards joining the half-completed plots with one of the endings. I
+                            ended up rejecting 2 endings that were “too gory” and “too edgy” compared to the rest. By
+                            the time sun had gone down, I was ready with a complete tree. </p>
+                    </blue>
+                </blockquote>
+                <p>As evident from the authors' note, creating a story with several different endings is hard. Remember that every possible combination of choices must make a plausible story, otherwise the experience will be ruined for certain readers which defeats the whole purpose of 'making choices'.</p>
+            </article>
+            <article>
+                <h3>2.2 Become a Writer</h3>
+                <p>To write stories you need to take permission from one of our 'moderators' by applying from your settings sections. If you are currently logged into the website <a href="{% url 'users:privilege-application' %}">this link</a> should take you to the right place.</p>
+                <p>After becoming a writer you'll note that you now have a 2-star badge on your profile and a new option of "New Story" on your home page. Clicking on the "New Story" takes you to an online editor in which you can write and submit your stories.</p>
+            </article>
+            <article>
+                <h3>2.3 The Science of Writing Interactive Stories</h3>
+                <p>Writing an interative story is a much more involved process than writing a simple story. For starters, this website uses "JSON" format for interactive stories. If you don't know what JSON is or how to write JSON, given below are some useful learning resources: </p>
+                <ul>
+                    <li><a href="https://www.youtube.com/watch?v=GpOO5iKzOmY">JSON Video Tutorial</a></li>
+                    <li><a href="https://www.tutorialspoint.com/json/json_quick_guide.htm">JSON Textual Material</a></li>
+                </ul>
+                <p>These resources have more than enough JSON related material to get you started. <span style="background-color: yellow;"><a href="">You can watch me explaining the process of writing a story using JSON here</a></span>. After watching this video you will be literate enough enough to start writing your own stories. Remember that the website enforces strict rules on how you write the stories. Your stories will undergo screening from one of our moderators before being available for public access. Spamming or writing offensive stories can result in a "freeze" ban.</p>
+            </article>
+        </section>
+        <section>
+            <h2 id="info-devs">3. Information for Developers</h2>
+            <article>
+                <p>This project uses the following Stack</p>
+                <ul>
+                    <li>DataBase - SQLite with ORM for Python</li>
+                    <li>Backend - Django</li>
+                    <li>Frontend - Bootstrapped HTML</li>
+                    <li>JSON management - jsonparse on pip</li>
+                    <li>Hosted on an Amazon EC2 Server</li>
+                </ul>
+                <p>This project is open sourced under MIT License and the source code is available on my GitHub (<a href="https://github.com/utk-dev/storyteller">utk-dev/storyteller</a>)</p>
+            </article>
+        </section>
+        <section>
+            <h2 id="moderation">4. Guidelines for Moderation</h2>
+            <article>
+                <p>As a moderator, your actions can have major consequences on the experience of users on our platform. All pages on this website that are associated with a "MODERATOR" privilege have there titles in Golden Color with a warning "actions have consequences" to remind you of your position. Any misbehaviour on the part of a moderator can result in permanent ban from the platform. Given below are some rules that all moderators need to follow:</p>
+                <ol>
+                    <li>Any user attempting to exploit the websites' functionality must be banned.</li>
+                    <li>Categorise a story into U/A group if it contains some blood violence (or light gore).</li>
+                    <li>Categorise a story into A group if it conatins profanity or dark humor.</li>
+                    <li>Do not approve a story if it contains personal information of anyone other than the author himself/herself.</li>
+                    <li>Frozen users shouldn't be unfrozen without communication with the moderator who unfroze it.</li>
+                    <li>While you are technically allowed to approve your own stories, your credibility will decrease if you do so often.</li>
+                    <li>Do not freeze other moderators yourself. Contact the Administrator (utk1234@outloo.com).</li>
+                </ol>
+            </article>
+        </section>
+        <section>
+            <h2 id="about-creator">5. About the Creator</h2>
+            <article>
+                <p>Hi There! I'm Utkarsh, currently an MCA student &commat; Maulana Azad National Institute of Technology, Bhopal. You can find me on <a href="https://linkedin.com/in/-utkarsh">LinkedIn</a> and my <a href="https://utkarsh-gupta.codes">Portfolio.</a></p>
+            </article>
+        </section>
+        <section>
+            <h2 id="credits">6. Credits</h2>
+            <article>
+                <p>
+                    A number of open-source projects have been invaluable in the development of this project as attributed below:
+                    <ol>
+                        <li><a href="https://github.com/Julian/jsonschema">Json Schema Validator</a> for Python by Julian Berman</li>
+                        <li><a href="https://github.com/theskumar/python-dotenv">Python-Dotenv</a> by Saurabh Kumar</li>
+                        <li><a href="https://djangoproject.com">Django</a> by Django Software Foundation</li>
+                        <li><a href="https://www.sqlite.org/index.html.">SQLite</a> by R. D. Hipp</li>
+                    </ol>
+                </p>
+            </article>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>

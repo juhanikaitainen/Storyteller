@@ -8,8 +8,8 @@ An interactive storytelling platform
 Current Status: 
 - [x] Django Build, 
 - [ ] Django Deploy
-- [ ] No Raw HttpResponse
-- [ ] Templates
-- [ ] Monaco
+- [X] No Raw HttpResponse
+- [X] Templates
+- [x] Monaco
 - [x] Stable Views
 - [x] Validation

@@ -3,10 +3,14 @@
 {% block title %}Wallet{% endblock %}
 
 {% block content %}
-<h2>You have {{ wallet.balance }} coins in your wallet</h2>
-<ul>
-    <li><a href="{% url 'accounts:add' %}">Add Coins</a></li>
-    <li><a href="{% url 'accounts:withdraw' %}">Withdraw Coins</a></li>
-    <li><a href="{% url 'accounts:history' %}">Transaction History</a></li>
-</ul>
+<div class="container py-5 my-5 d-flex flex-column align-items-center">
+    <p class="lead">Wallet Balance:</p>
+    <h1>₹{{ wallet.balance }}</h1>
+    <ul class="d-flex flex-column align-items-center" style="list-style-type: none; margin-left: 0; padding-left:0;">
+        <li><a class="btn btn-custom"  href="{% url 'accounts:add' %}">Add Coins</a></li>
+        <li><a class="btn btn-custom" href="{% url 'accounts:withdraw' %}">Withdraw Coins</a></li>
+        <li><a class="btn btn-custom" href="{% url 'accounts:history' %}">Transaction History</a></li>
+    </ul>
+    <a href="{% url 'stories:home' %}">Manage Stories</a>
+</div>
 {% endblock %}

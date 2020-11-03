@@ -56,8 +56,9 @@ def logout_view(request):
 @login_required(login_url='/users/login/')
 @not_frozen
 def settings_view(request):
-    is_mod = Customuser.objects.get(djangouser=request.user).usertype >= Customuser.Category.MODERATOR
-    return render(request, 'users/settings.html', { 'is_mod': is_mod })
+    userinfo = Customuser.objects.get(djangouser=request.user)
+    is_mod = userinfo.usertype >= Customuser.Category.MODERATOR
+    return render(request, 'users/settings.html', { 'is_mod': is_mod, 'userinfo': userinfo })
 
 @login_required(login_url='/users/login/')
 @moderator_required

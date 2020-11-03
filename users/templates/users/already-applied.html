@@ -3,6 +3,8 @@
 {% block title %}Already Applied{% endblock %}
 
 {% block content %}
-<p><red>You already have a pending application.</red></p>
-<p><a href="{% url 'users:settings-view' %}">Go back to settings</a></p>
+<div class="container d-flex flex-column align-items-center justify-content-center" style="min-height: 80vh;">
+    <p class="alert alert-info" style="border-radius: 0;">You already have a pending application.</p>
+    <p><a href="{% url 'users:settings-view' %}">Go back to settings</a></p>
+</div>
 {% endblock %}

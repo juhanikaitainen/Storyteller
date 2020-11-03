@@ -3,21 +3,23 @@
 {% block title %}Catalog{% endblock %}
 
 {% block content %}
-<h3>Browse Catalog</h3>
-<table>
+<div class="container" style="min-height: 80vh;">
+<h1>Browse Catalogue</h1>
+<table class="table mt-5">
     <tr>
         <th>Title</th>
-        <th>Rating</th>
-        <th>Price</th>
-        <th>Details</th>
+        <th>⭐</th>
+        <th>₹</th>
+        <th></th>
     </tr>
     {% for story in catalog %}
     <tr>
         <td>{{ story.title }}</td>
-        <td>{{ story.rating }}</td>
+        <td>{% if story.rating == 0 %}<span class="text-success">U</span>{% endif %}{% if story.rating == 1 %}<span class="text-warning">U/A</span>{% endif %}{% if story.rating == 2 %}<span class="text-danger">A</span>{% endif %}</td>
         <td>{{ story.price }}</td>
-        <td><a href="{% url 'stories:detail' id=story.id %}">Details</a></td>
+        <td><a class="btn btn-success py-0" href="{% url 'stories:detail' id=story.id %}">Read</a></td>
     </tr>
     {% endfor %}
 </table>
+</div>
 {% endblock %}

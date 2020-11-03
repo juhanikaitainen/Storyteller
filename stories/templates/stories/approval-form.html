@@ -3,12 +3,27 @@
 {% block title %}Approve Story Number {{ story.id }}{% endblock %}
 
 {% block content %}
-<h3>Approve a story</h3>
-<p>Actions have consequences</p>
-<a href="{% url 'stories:read' storyid=story.id sectionid=firstsection.id %}" target="_blank">Read this story</a>
-<form action="{% url 'stories:approve-id' id=story.id %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Approve">
-</form>
+<style>
+    .approval-form * {
+        display: block;
+        margin-top: 15px;
+    }
+    .approval-form input[type="checkbox"] {
+        transform: scale(1.3);
+        border-radius: 0;
+        margin-left: 4px;
+    }
+</style>
+<div class="container" style="min-height: 80vh;">
+    <h1 class="text-warning">Approve a story</h1>
+    <p class="lead"><a href="{% url 'helpp:home' %}#moderation">Guidelines for Moderation</a></p>
+    <p><a class="btn btn-outline-warning" href="{% url 'stories:read' storyid=story.id sectionid=firstsection.id %}" target="_blank">Read this story</a></p>
+    <form class="approval-form" action="{% url 'stories:approve-id' id=story.id %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input class="btn btn-warning text-light" type="submit" value="Save Metadata">
+        <p class="text-warning">[Actions Have Consequences]</p>
+    </form>
+    <a class="btn btn-custom" href="{% url 'stories:approve' %}">Back to Approval List</a>
+</div>
 {% endblock %}

@@ -2,14 +2,18 @@
 
 {% block title %}{{ name }} | Storyteller{% endblock %}
 {% block content %}
-<h3>{{ name }}</h3>
-<p>{{ section.text }}</p>
-{% if links is not None %}
-<ul>
+<div class="container" style="min-height: 80vh; background-color: #180f29; padding: 20px; border: 1px solid #ff3f81">
+    <h1>{{ name }}</h1>
+    <p class="text-justify">{{ section.text }}</p>
+    {% if links is not None %}
     {% for link in links %}
-    <li><a href="{% url 'stories:read' storyid=sid sectionid=link.tosection.id %}">{{ link.button }}</a></li>
-    {% endfor %}
-</ul>
-{% endif %}
-<p><a href="{% url 'stories:read' storyid=sid sectionid=fsid.id %}">Go back to beginning</a></p>
+    <a class="btn btn-outline-light" href="{% url 'stories:read' storyid=sid sectionid=link.tosection.id %}">{{ link.button }}</a>
+    {% endfor %} 
+    {% else %}
+    {% endif %}
+    <p class="mt-2 d-flex flex-column justify-content-center align-items-lg-end">
+        <a class="btn btn-custom mb-0" href="{% url 'stories:read' storyid=sid sectionid=fsid.id %}">Beginning of the Story</a> 
+        <a class="btn btn-custom mt-2" style="min-width: 185px;" href="{% url 'stories:home' %}">Back to Home</a> <br>
+    </p>
+</div>
 {% endblock %}

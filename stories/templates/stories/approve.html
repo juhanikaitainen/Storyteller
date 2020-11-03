@@ -2,10 +2,31 @@
 
 {% block title %}Approve and Rate Stories{% endblock %}
 {% block content %}
-<h3>Approve and Rate Stories</h3>
-<ul>
-    {% for story in stories %}
-    <li>{{ story.title }} | <a href="{% url 'stories:approve-id' id=story.id %}">Save</a></li>
-    {% endfor %}
-</ul>
+<div class="container" style="min-height: 80vh;">
+    <h1 class="text-warning">Approve &amp; Rate Stories</h1>
+    <p class="lead"><a href="{% url 'helpp:home' %}#moderation">Guidelines for Moderation</a></p>
+    <p><a class="btn btn-custom" href="{% url 'stories:home' %}">Back to Home</a></p>
+    <div class="d-flex justify-content-center mt-5">
+        <table class="table table-bordered table-hover text-center" style="max-width: 600px;">
+            <thead>
+                <tr>
+                    <th>Story Title</th>
+                    <th>Approved?</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for story in stories %}
+
+                <tr>
+                    <td>{{ story.title }}</td>
+                    <td>{% if story.approved %}<span class="text-success">YES{% else %}
+                    <span class="text-danger">NO</span>{% endif %}</td>
+                    <td><a class="btn btn-outline-info" href="{% url 'stories:approve-id' id=story.id %}">Info</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}
