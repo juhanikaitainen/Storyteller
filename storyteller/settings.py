@@ -43,7 +43,7 @@ if not DEBUG:
 ALLOWED_HOSTS = []
 
 if DEBUG:
-    ALLOWED_HOSTS.append('127.0.0.1')
+    ALLOWED_HOSTS += ['127.0.0.1', '192.168.1.5']
 else:
     ALLOWED_HOSTS.append('story.pythonanywhere.com')
 
