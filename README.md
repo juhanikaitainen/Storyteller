@@ -1,7 +1,7 @@
 Storyteller
 ==========
 
-Version 0.9
+Version 1.3
 
 An interactive storytelling platform
 
