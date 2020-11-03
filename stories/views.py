@@ -120,7 +120,7 @@ def story_my(request):
 @not_frozen
 @moderator_required
 def story_approve(request):
-    return render(request, 'stories/approve.html', {'stories': Story.objects.filter(approved=False)})
+    return render(request, 'stories/approve.html', {'stories': Story.objects.filter()})
 
 
 @login_required

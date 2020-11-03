@@ -3,11 +3,15 @@
 {% block title %}Signup{% endblock %}
 
 {% block content %}
-    <h2>User Signup</h2>
-    <form action="{% url 'users:signup-view' %}" method="post">
+<div class="container-fluid pt-3">
+    <h1>Sign Up</h1>
+    <div class="d-flex justify-content-center">
+    <form class="form pt-4 d-flex flex-column" action="{% url 'users:signup-view' %}" method="post">
         {% csrf_token %}
         {{ djangoform }}
         {{ customform }}
-        <input type="submit" value="Signup">
+        <input class="btn btn-custom" type="submit" value="Signup">
     </form>
+</div>
+</div>
 {% endblock %}

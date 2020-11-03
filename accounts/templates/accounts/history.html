@@ -3,24 +3,30 @@
 {% block title %}Transaction History{% endblock %}
 
 {% block content %}
-<table>
-    <tr>
-        <th>Date &amp; Time</th>
-        <th>Amount</th>
-        <th>Added or Withdrawn</th>
-    </tr>
-    {% for item in history %}
-    <tr>
-        <td>{{ item.timestamp }}</td>
-        <td>{{ item.amount }}</td>
-        <td>
-            {% if item.withdrawn %}
-            WITHDRAWN
-            {% else %}
-            ADDED
-            {% endif %}
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+<div class="container" style="min-height: 80vh;">
+    <p class="lead">Storyteller</p>
+    <h1 class="mt-4">Transaction History</h1>
+    <a class="btn btn-custom" href="{% url 'accounts:home' %}">Back to Wallet</a>
+    <a class="btn btn-custom" href="#" onclick="window.print()">Print</a>
+    <table class="table mt-5">
+        <tr>
+            <th>Date &amp; Time</th>
+            <th>Amount</th>
+            <th>Added or Withdrawn</th>
+        </tr>
+        {% for item in history %}
+        <tr>
+            <td>{{ item.timestamp }}</td>
+            <td>₹ {{ item.amount }}</td>
+            <td>
+                {% if item.withdrawn %}
+                <span class="text-danger">WITHDRAWN</span>
+                {% else %}
+                <span class="text-success">RECEIVED</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}

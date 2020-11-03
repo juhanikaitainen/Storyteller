@@ -3,10 +3,22 @@
 {% block title %}Withdraw Coins{% endblock %}
 
 {% block content %}
-<h3>Withdraw Coins</h3>
-<form action="{% url 'accounts:withdraw' %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Add">
-</form>
+<div class="container pt-3 text-center" style="min-height: 80vh;">
+    <h1>Withdraw</h1>
+    {% if err is not None %}
+    <div class="alert alert-danger" role="alert">
+        {{ err }}
+    </div>
+    {% endif %}
+    <div class="d-flex justify-content-center">
+        <form class="form pt-4 d-flex flex-column align-items-center" action="{% url 'accounts:withdraw' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input class="btn btn-custom" type="submit" value="Withdraw">
+        </form>
+    </div>
+    <div class="container text-center pt-4">
+        <a href="{% url 'accounts:home' %}">Back to Wallet</a>
+    </div>
+</div>
 {% endblock %}

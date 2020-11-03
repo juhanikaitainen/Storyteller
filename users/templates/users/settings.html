@@ -1,13 +1,45 @@
 {% extends 'base.html' %}
 {% block title %}User Settings{% endblock %}
 {% block content %}
-<ul>
-    {% if is_mod %}
-        <li><a href="{% url 'users:freeze-view' %}">Freeze Users</a></li>
-        <li><a href="{% url 'users:unfreeze-view' %}">Unfreeze Users</a></li>
-        <li><a href="{% url 'users:grant-privilege' %}">Grant Privileges</a></li>
-    {% else %}
-        <li><a href="{% url 'users:privilege-application' %}">Apply for higher privileges</a></li>
-    {% endif %}
-</ul>
+<div class="pt-5 mt-2 container d-flex flex-column align-items-center" style="min-height: 80vh;">
+    <h1>&commat;{{ user.username }}</h1>
+    <h2>
+        {% if userinfo.usertype == 0 %}
+        ⭐
+        {% elif userinfo.usertype == 1 %}
+        ⭐⭐
+        {% else %}
+        ⭐⭐⭐
+        {% endif %}
+    </h2>
+    <p class="lead">
+        {% if userinfo.usertype == 0 %}
+        <span class="text-success"><b>READER</b></span>
+        {% elif userinfo.usertype == 1 %}
+        <span class="text-primary"><b>AUTHOR</b></span>
+        {% else %}
+        <span class="text-warning"><b>MODERATOR</b></span>
+        {% endif %}
+    </p>
+    <p class="lead">{{ userinfo.name }}</p>
+    <ul class="nav justify-content-center">
+        {% if is_mod %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:freeze-view' %}">Freeze Users</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:unfreeze-view' %}">Unfreeze Users</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:grant-privilege' %}">Grant Privileges</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:privilege-application' %}">Apply For Higher Privileges</a>
+        </li>
+        {% endif %}
+    </ul>
+    <p><a class="btn btn-custom" href="{% url 'stories:home' %}">Stories Home</a></p>
+</div>
+
 {% endblock %}

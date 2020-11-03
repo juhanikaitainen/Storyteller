@@ -1,10 +1,49 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
+{% load static %}
 
 {% block title %}Storyteller Home{% endblock %}
 
 {% block content %}
-<h2>This is home page</h2>
-{% if name is not None %}
-<p>Welcome back {{ name }}!</p>
-{% endif %}
+<style>
+    #main {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+    }
+    .bx {
+        height: 100%;
+    }
+    h1 {
+        text-transform: capitalize;
+        font-family: Broadway, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+</style>
+<div id="main">
+    <div class="container-fluid bx d-flex flex-column justify-content-center align-items-center">
+        <h1 class="display-4">Storyteller</h1>
+        <p class="lead">Choices Matter</p>
+        {% if user.is_authenticated %}
+        <a class="btn-custom" href="{% url 'stories:home' %}">Explore</a>
+        {% else %}
+        <a class="btn-custom" href="{% url 'users:signup-view' %}">Sign Up</a>
+        {% endif %}
+    </div>
+</div>
+<script src="{% static 'js/three.min.js' %}"></script>
+<script src="{% static 'js/vanta.net.min.js' %}"></script>
+<script>
+VANTA.NET({
+  el: "#main",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.00,
+  scaleMobile: 1.00
+})
+</script>
 {% endblock %}

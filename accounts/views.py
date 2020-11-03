@@ -15,7 +15,7 @@ def accounts_home(request):
     try:
         wallet = Wallet.objects.get(owner=request.user)
     except Wallet.DoesNotExist:
-        return HttpResponse("Wallet does not exist for this account!")
+        return HttpResponseBadRequest("<h2>Wallet does not exist for this account!</h2>")
     return render(request, 'accounts/wallet-home.html', { 'wallet': wallet })
 
 
@@ -28,7 +28,7 @@ def coins_add(request):
             wallet = Wallet.objects.get(owner=request.user)
             new_transaction = form.save(commit=False)
             if decimal.Decimal(999999.00) - wallet.balance < new_transaction.amount:
-                return HttpResponseBadRequest('Wallet balance cannot exceed 999999.00 coins. Please reduce your amount.')
+                return render(request, 'accounts/add.html', { 'form': form, 'err': 'Maximum wallet limit exceeded!' })
             new_transaction.withdrawn = False
             new_transaction.person = request.user
             new_transaction.save()
@@ -37,7 +37,7 @@ def coins_add(request):
             return redirect('accounts:home')
     else:
         form = TransactionForm()
-    return render(request, 'accounts/add.html', { 'form': form })
+    return render(request, 'accounts/add.html', { 'form': form, 'err': None })
 
 @login_required(login_url='/users/login/')
 @not_frozen
@@ -48,7 +48,7 @@ def coins_withdraw(request):
             wallet = Wallet.objects.get(owner=request.user)
             new_transaction = form.save(commit=False)
             if wallet.balance < new_transaction.amount:
-                return HttpResponseBadRequest('You cannot withdraw more coins than what is available in your wallet.')
+                return render(request, 'accounts/remove.html', { 'form': form, 'err': 'You cannot withdraw more than what you have in your wallet!' })
             new_transaction.withdrawn = True
             new_transaction.person = request.user
             new_transaction.save()
@@ -57,7 +57,7 @@ def coins_withdraw(request):
             return redirect('accounts:home')
     else:
         form = TransactionForm()
-    return render(request, 'accounts/remove.html', { 'form': form })
+    return render(request, 'accounts/remove.html', { 'form': form, 'err': None })
 
 
 @login_required(login_url='/users/login/')

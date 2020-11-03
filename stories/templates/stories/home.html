@@ -3,14 +3,25 @@
 {% block title %}Stories Home{% endblock %}
 
 {% block content %}
-<ul>
-    <li><a href="{% url 'stories:list' %}">Browse Catalog</a></li>
-    <li><a href="{% url 'stories:my' %}">Continue Reading</a></li>
-    {% if userinfo.usertype >= 1 %}
-    <li><a href="{% url 'stories:new' %}">New Story</a></li>
-    {% endif %}
-    {% if userinfo.usertype >= 2 %}
-    <li><a href="{% url 'stories:approve' %}">Approve, Revoke and Rate Stories</a></li>
-    {% endif %}
-</ul>
+
+<div class="container d-flex justify-content-around align-items-center" style="min-height: 80vh;">
+    <div class="row text-center">
+        <div class="col-12 my-2 p-0">
+            <a class="d-block bg-success py-5 text-light" href="{% url 'stories:list' %}">Browse Catalogue</a></li>
+        </div>
+        <div class="col-12 my-2 p-0">
+            <a class="d-block bg-warning py-5 text-light" href="{% url 'stories:my' %}">Continue Reading</a></li>
+        </div>
+        {% if userinfo.usertype >= 1 %}
+        <div class="col-12 my-2 p-0">
+            <a class="d-block bg-danger py-5 text-light" href="{% url 'stories:new' %}">New Story</a></li>
+        </div>
+        {% endif %}
+        {% if userinfo.usertype >= 2 %}
+        <div class="col-12 my-2 p-0">
+            <a class="d-block bg-primary py-5 text-light" href="{% url 'stories:approve' %}">Approve, Revoke and Rate Stories</a></li>
+        </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

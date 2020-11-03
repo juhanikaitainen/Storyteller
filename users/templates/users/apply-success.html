@@ -2,16 +2,36 @@
 {% block title %}Application Success{% endblock %}
 
 {% block content %}
-<a href="{% url 'home-view' %}">Back to Home</a>
-<h3>Application Acknowledgement</h3>
-<p>Applied on: {{ application.timestamp }}</p>
-<p>Applicant Username: {{ application.djangouser.username }}</p>
-<p>Applied for privilege: 
-    {% if application.totype == 2 %}
-        Writer
-    {% else %}
-        Moderator
-    {% endif %}
-</p>
-<p>Acknowledged by Storyteller Admin</p>
+<div class="container" style="min-height: 80vh;">
+    <a class="btn btn-custom" href="{% url 'users:settings-view' %}">Back to Settings</a>
+    <h1 class="mt-4 mb-3 text-info">Acknowledgement</h1>
+    <table class="table table-bordered">
+        <tr>
+            <td>Application Number:</td>
+            <td>{{ application.id }}</td>
+        </tr>
+        <tr>
+            <td>Applied on:</td>
+            <td>{{ application.timestamp }}</td>
+        </tr>
+        <tr>
+            <td>Applicant Username:</td>
+            <td>&commat;{{ application.djangouser.username }}</td>
+        </tr>
+        <tr>
+            <td>Applied for privilege:</td>
+            <td>
+                {% if application.totype == 1 %}
+                Writer
+                {% else %}
+                Moderator
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    <p class="text-info">Storyteller-Admin</p>
+    <button class="btn btn-primary" onclick="window.print()">Print</button>
+    <p><small>For any greviances please contact us at <a
+                href="mailto:utk1234@outlook.com">utk1234@outlook.com</a></small></p>
+</div>
 {% endblock %}

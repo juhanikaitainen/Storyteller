@@ -26,6 +26,9 @@ class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
         fields = ['totype', 'req']
+        widgets = {
+            'req': forms.Textarea()
+        }
         labels = {
             'totype': 'Promote To',
             'req': 'Message'
