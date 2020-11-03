@@ -7,7 +7,7 @@ An interactive storytelling platform
 
 Current Status: 
 - [x] Django Build, 
-- [ ] Django Deploy
+- [X] Django Deploy
 - [X] No Raw HttpResponse
 - [X] Templates
 - [x] Monaco
