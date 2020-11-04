@@ -24,7 +24,7 @@ class Section(models.Model):
 
 class Sectionlink(models.Model):
     fromsection = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='fromsection')
-    tosection = models.OneToOneField(Section, on_delete=models.CASCADE, related_name='tosection')
+    tosection = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='tosection')
     button = models.CharField(max_length=50)
 
 class Userdata(models.Model):
