@@ -200,12 +200,12 @@ def story_new(request):
             links = extractLinks(sections)
             for link in links:
                 if link['from'] not in story_positions or link['to'] not in story_positions:
-                    return renderError("Broken Story Links")
+                    return renderError("Broken Story Link: " + str(link))
 
             link_locations = {link['to'] for link in links}
             for section in sections:
                 if not (section['position'] in link_locations or section['is_starting']):
-                    return renderError("Unreachable Section found")
+                    return renderError("Unreachable Section found: " + str(section))
 
             story = None
             try:
