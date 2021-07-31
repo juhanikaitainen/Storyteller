@@ -28,7 +28,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG") == "1"
 
 if not DEBUG:
-    global SECURE_HSTS_SECONDS
+    global SECURE_HSTS_PRELOAD
+    global SECURE_SSL_REDIRECT
     global SECURE_HSTS_SECONDS
     global SESSION_COOKIE_SECURE
     global CSRF_COOKIE_SECURE
